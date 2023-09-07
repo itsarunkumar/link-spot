@@ -1,8 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { NextUIProviders } from "@/components/theme-provider";
-import Nav from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import QueryWrapper from "@/components/query-wrapper";
 
@@ -23,10 +22,7 @@ export default function RootLayout({
       <body>
         <ClerkProvider>
           <QueryWrapper>
-            <NextUIProviders>
-              <Nav />
-              {children}
-            </NextUIProviders>
+            <ThemeProvider>{children}</ThemeProvider>
           </QueryWrapper>
         </ClerkProvider>
       </body>
