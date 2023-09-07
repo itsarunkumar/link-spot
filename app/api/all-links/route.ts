@@ -10,6 +10,9 @@ export async function GET(request: NextRequest) {
       where: {
         userId,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     return new Response(JSON.stringify(links), {

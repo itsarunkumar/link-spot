@@ -1,100 +1,41 @@
-"use client";
-
-import React, { use } from "react";
+import { UserButton } from "@clerk/nextjs";
+import React from "react";
+import { auth } from "@clerk/nextjs";
+import Link from "next/link";
 import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-} from "@nextui-org/react";
-import { UserButton, useAuth, useUser } from "@clerk/nextjs";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-export default function Nav() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const { userId, isSignedIn } = useAuth();
-
-  const { user } = useUser();
-
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
+async function Nav() {
+  const { userId } = await auth();
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
-        <NavbarBrand>
-          <Link href="/" className="font-bold text-inherit">
-            Linkspot
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link href="#" color="foreground">
-            Pricing
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/a">
-            go to app
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-      <NavbarContent justify="end">
-        {isSignedIn ? (
-          <NavbarItem>
-            <UserButton afterSignOutUrl="/" />
-          </NavbarItem>
+    <nav className=" sticky top-0 z-10 lg:px-44 px-5 w-full flex justify-between items-center h-14 backdrop-blur-lg">
+      <h1 className="lg:text-3xl  text-2xl">
+        <Link href={"/"}>Linkspot</Link>
+      </h1>
+      <div className="w-full flex justify-end items-center gap-5 ">
+        <Link href={"/features"} className="">
+          features
+        </Link>
+        <Link href={"/a"} className="">
+          app
+        </Link>
+        {userId ? (
+          <UserButton afterSignOutUrl="/" />
         ) : (
-          <NavbarItem className="hidden lg:flex">
-            <Link href="/sign-in">Login</Link>
-          </NavbarItem>
+          <Link href={"/sign-in"} className="lg:block hidden text-xl">
+            Login
+          </Link>
         )}
-      </NavbarContent>
-      <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              className="w-full"
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-    </Navbar>
+      </div>
+    </nav>
   );
 }
+
+export default Nav;
