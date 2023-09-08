@@ -1,90 +1,56 @@
 "use client";
 
-import React from "react";
-import { Tabs, Tab, Chip } from "@nextui-org/react";
-import Form from "./hook-form";
-import ModalS from "./modal";
-import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import TableLinks from "./table-links";
+import * as React from "react";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
 
-export default function DashTab() {
-  const queryClient = useQueryClient();
+import { cn } from "@/lib/utils";
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["addlink"],
-    queryFn: async () => {
-      return axios.get("/api/all-links");
-    },
-    onSuccess: async () => {
-      queryClient.invalidateQueries(["addlink"]);
-    },
-  });
+const Tabs = TabsPrimitive.Root;
 
-  console.log(data);
+const TabsList = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.List>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.List
+    ref={ref}
+    className={cn(
+      "inline-flex h-9 items-center justify-center border-b-2 border-slate-100 border-opacity-10  p-1 text-muted-foreground",
+      className
+    )}
+    {...props}
+  />
+));
+TabsList.displayName = TabsPrimitive.List.displayName;
 
-  return (
-    <div className="flex w-full flex-col">
-      <Tabs
-        aria-label="Options"
-        color="primary"
-        variant="underlined"
-        classNames={{
-          tabList:
-            "gap-6 w-full relative rounded-none p-0 border-b border-divider",
-          cursor: "w-full bg-[#22d3ee]",
-          tab: "max-w-fit px-0 h-12",
-          tabContent: "group-data-[selected=true]:text-[#06b6d4]",
-        }}
-      >
-        <Tab
-          key="Account"
-          title={
-            <div className="flex items-center space-x-2">
-              <span>Account</span>
-              <Chip size="sm" variant="faded">
-                9
-              </Chip>
-            </div>
-          }
-        />
-        <Tab
-          key="shortened-links"
-          title={
-            <div className="flex items-center space-x-2">
-              <span>shortened links</span>
-              <Chip size="sm" variant="faded">
-                3
-              </Chip>
-            </div>
-          }
-        />
-        <Tab
-          key="Links"
-          title={
-            <div className="flex items-center space-x-2">
-              <span>Links</span>
-              <Chip size="sm" variant="faded">
-                {data?.data.length}
-              </Chip>
-            </div>
-          }
-        >
-          <div className="w-full ">
-            <ModalS />
-          </div>
+const TabsTrigger = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.Trigger
+    ref={ref}
+    className={cn(
+      "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow  data-[state=active]:underline data-[state=active]:underline-offset-[12px]   ",
 
-          <div>
-            {isLoading ? (
-              <div>Loading...</div>
-            ) : (
-              <>
-                <TableLinks data={data?.data} />
-              </>
-            )}
-          </div>
-        </Tab>
-      </Tabs>
-    </div>
-  );
-}
+      className
+    )}
+    {...props}
+  />
+));
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
+
+const TabsContent = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.Content
+    ref={ref}
+    className={cn(
+      "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      className
+    )}
+    {...props}
+  />
+));
+TabsContent.displayName = TabsPrimitive.Content.displayName;
+
+export { Tabs, TabsList, TabsTrigger, TabsContent };

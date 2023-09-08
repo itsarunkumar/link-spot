@@ -1,9 +1,9 @@
 import Box from "@/components/box-svg";
-import { ButtonBordered } from "@/components/ui/button";
 import { currentUser, auth } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   const user: User | null = await currentUser();
@@ -13,42 +13,22 @@ export default async function Home() {
   return (
     <>
       <Box className="fixed w-full h-screen opacity-30" />
-      <div className=" relative w-full flex justify-center items-center flex-col">
+      <div className="relative w-full flex justify-center items-center flex-col font-lato">
         <div className="w-full h-screen flex justify-center items-center flex-col">
-          <h4 className="lg:text-9xl text-4xl">Linkspot</h4>
-          <p className="text-2xl my-5">
-            {user
-              ? ` Welcome back to Linkspot - ${user?.username}`
-              : "Welcome to Linkspot"}
+          <h1 className="lg:text-9xl font-bold text-7xl font-philosopher">
+            Linkspot
+          </h1>
+          <p className="my-3 px-3  text-center decoration-slate-100 underline underline-offset-2">
+            a place to share your links with the world , no more hassle of
+            keeping separate links
           </p>
-
-          <p className="hover:underline underline-offset-2 decoration-violet-600 transition-all ">
-            Linkspot is an place where you can share all your links in single
-            place , without any hassle of copying and pasting.
-          </p>
-          <ButtonBordered className="mt-5 hover:rounded-md transition-all">
-            {userId ? (
-              <Link href="/a">Go to app</Link>
+          <Button asChild variant={"outline"}>
+            {user ? (
+              <Link href={"/a"}>Go To App</Link>
             ) : (
               <Link href={"/sign-up"}>Sign Up</Link>
             )}
-          </ButtonBordered>
-        </div>
-        <div className="w-full h-screen flex justify-center items-center flex-wrap ">
-          <Image
-            src={"./world.svg"}
-            alt="svg phone"
-            className="w-1/2 h-1/2 object-contain"
-            width={100}
-            height={100}
-          />
-          <p className="lg:text-7xl text-4xl">
-            Linkspot is an opensource project.
-          </p>
-        </div>
-
-        <div className="text-sm text-slate-400 underline decoration-slate-100 my-8">
-          github contributions are welcomed
+          </Button>
         </div>
       </div>
     </>

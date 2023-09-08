@@ -14,7 +14,8 @@ export async function GET(
         username: params.id as string,
       },
       include: {
-        links: true,
+        links: { orderBy: { createdAt: "desc" } },
+        socialLinks: { orderBy: { createdAt: "desc" } },
       },
     });
 

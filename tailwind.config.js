@@ -1,14 +1,11 @@
-const { nextui } = require("@nextui-org/react");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
+  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     container: {
@@ -19,10 +16,10 @@ module.exports = {
       },
     },
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        montserrat: ["Montserrat"],
+        philosopher: ["Philosopher"],
+        lato: ["Lato"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -80,18 +77,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    nextui({
-      addCommonColors: true,
-      themes: {
-        dark: {
-          colors: {
-            background: "hsl(222.2 84% 4.9%)", // or DEFAULT
-          },
-          // ... rest of the colors
-        },
-      },
-    }),
-  ],
+  plugins: [require("tailwindcss-animate")],
 };
