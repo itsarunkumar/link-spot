@@ -5,9 +5,17 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// for local postgresql
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// remote planetscale mysql db
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
