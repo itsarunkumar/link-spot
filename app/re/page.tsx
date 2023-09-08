@@ -31,7 +31,7 @@ export default async function rePage() {
 
   return (
     <div>
-      <h1>...Loading</h1>
+      <h1 className="text-5xl">...Loading</h1>
     </div>
   );
 }

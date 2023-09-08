@@ -54,7 +54,7 @@ function Public({ params }: { params: { id: string } }) {
 
   return (
     <div className="lg:w-1/2 md:w-2/3 w-full bg-neutral-200  flex justify-center items-center flex-col rounded-xl text-slate-900">
-      <h2 className="text-3xl capitalize font-bold font-philosopher">
+      <h2 className=" my-3 text-3xl capitalize font-bold font-philosopher">
         {data?.user.name}
       </h2>
       <div className="flex gap-5 my-5">
