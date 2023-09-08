@@ -11,11 +11,14 @@ datasource db {
 }
 
 model User {
-  id        String   @unique
-  username  String   @unique
-  email     String
-  createdAt DateTime @default(now())
-  links     Link[]
+  id          String       @unique
+  username    String       @unique
+  email       String
+  name        String?
+  profilePic  String?
+  createdAt   DateTime     @default(now())
+  links       Link[]
+  socialLinks SocialLink[]
 }
 
 model Link {
@@ -26,4 +29,22 @@ model Link {
   User      User?    @relation(fields: [userId], references: [id])
   userId    String?
   createdAt DateTime @default(now())
+}
+
+enum SocialLinkType {
+  TWITTER
+  GITHUB
+  LINKEDIN
+  EMAIL
+  INSTAGRAM
+  FACEBOOK
+}
+
+model SocialLink {
+  id        String         @id @default(cuid())
+  url       String
+  title     SocialLinkType
+  createdAt DateTime       @default(now())
+  User      User?          @relation(fields: [userId], references: [id])
+  userId    String?
 }

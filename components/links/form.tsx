@@ -2,11 +2,12 @@
 
 import React, { use } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Label } from "../ui/label";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 type Inputs = {
   title: string;
@@ -31,6 +32,7 @@ function Form() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["links"]);
+
       reset();
     },
   });

@@ -4,8 +4,8 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import QueryWrapper from "@/components/query-wrapper";
-import Nav from "@/components/navbar";
-import { Toaster } from "@/components/ui/toaster";
+import Nav from "@/components/shared/navbar";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 

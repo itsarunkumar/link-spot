@@ -9,10 +9,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Form from "@/components/form";
+import Form from "@/components/links/form";
 
-import ListLinks from "@/components/list-links";
+import ListLinks from "@/components/links/list-links";
 import { Link1Icon, Link2Icon, PlusIcon } from "@radix-ui/react-icons";
+import AccountForm from "@/components/account/account-form";
+import { Button } from "@/components/ui/button";
+import AccountPage from "@/components/account/account-page";
 
 export default function appPage() {
   // const queryClient = useQueryClient();
@@ -20,15 +23,15 @@ export default function appPage() {
   return (
     <div className="w-full flex justify-center items-center flex-col">
       <Tabs
-        defaultValue="Links"
+        defaultValue="Account"
         className="w-full flex justify-center items-center flex-col mt-10"
       >
         <TabsList className=" w-full flex justify-evenly items-center border-b-2 border-slate-100 border-opacity-10">
-          <TabsTrigger value="Test">Account</TabsTrigger>
+          <TabsTrigger value="Account">Account</TabsTrigger>
           <TabsTrigger value="Links">Links</TabsTrigger>
         </TabsList>
-        <TabsContent value="Test">
-          <span></span>
+        <TabsContent value="Account" className="w-full">
+          <AccountPage />
         </TabsContent>
         <TabsContent value="Links" className="w-full">
           <div className="w-full flex justify-between items-center px-10 py-10 ">
@@ -37,7 +40,9 @@ export default function appPage() {
             </h3>
             <Dialog>
               <DialogTrigger className="flex items-center justify-center gap-2">
-                <PlusIcon /> Add New Link
+                <Button>
+                  <PlusIcon /> Add Link
+                </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
@@ -51,7 +56,7 @@ export default function appPage() {
               </DialogContent>
             </Dialog>
           </div>
-          <div className="w-full h-full flex justify-center items-center flex-col">
+          <div className="w-full flex justify-center items-center flex-col">
             <ListLinks />
           </div>
         </TabsContent>
