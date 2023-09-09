@@ -21,7 +21,7 @@ export default function appPage() {
   // const queryClient = useQueryClient();
 
   return (
-    <div className="w-full flex justify-center items-center flex-col">
+    <div className=" min-h-max w-full flex justify-center items-center flex-col">
       <Tabs
         defaultValue="Account"
         className="w-full flex justify-center items-center flex-col mt-10"
@@ -33,18 +33,18 @@ export default function appPage() {
         <TabsContent value="Account" className="w-full">
           <AccountPage />
         </TabsContent>
-        <TabsContent value="Links" className="w-full">
+        <TabsContent value="Links" className="w-full relative">
           <div className="w-full flex justify-between items-center px-10 py-10 ">
             <h3 className="flex items-center gap-2 justify-center">
               My Links <Link1Icon />
             </h3>
             <Dialog>
-              <DialogTrigger className="flex items-center justify-center gap-2">
+              <DialogTrigger className="  flex items-center justify-center gap-2">
                 <Button>
                   <PlusIcon /> Add Link
                 </Button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="  ">
                 <DialogHeader>
                   <DialogTitle className="my-2 flex justify-center items-center gap-2">
                     <Link2Icon /> Create a new link

@@ -12,8 +12,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Pencil2Icon } from "@radix-ui/react-icons";
-import { Input } from "../ui/input";
-import CopyButton from "../shared/copy-button";
 
 async function AccountPage() {
   const user = await currentUser();
