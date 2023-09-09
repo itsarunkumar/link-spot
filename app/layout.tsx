@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="relative ">
         <ClerkProvider>
           <QueryWrapper>
-            <ThemeProvider enableSystem attribute="class" defaultTheme="dark">
+            <ThemeProvider enableSystem attribute="class" defaultTheme="light">
               <Nav />
               {children}
               <Toaster />

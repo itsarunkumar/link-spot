@@ -2,8 +2,7 @@ import Box from "@/components/box-svg";
 import { currentUser, auth } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
 import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "@nextui-org/button";
 
 export default async function Home() {
   const user: User | null = await currentUser();
@@ -22,7 +21,11 @@ export default async function Home() {
             a place to share your links with the world , no more hassle of
             keeping separate links
           </p>
-          <Button asChild variant={"outline"}>
+
+          <Button
+            className=" border-2 border-violet-500 rounded-sm px-4 py-2"
+            variant="bordered"
+          >
             {user ? (
               <Link href={"/a"}>Go To App</Link>
             ) : (
