@@ -12,10 +12,20 @@ import {
 import Form from "@/components/links/form";
 
 import ListLinks from "@/components/links/list-links";
-import { Link1Icon, Link2Icon, PlusIcon } from "@radix-ui/react-icons";
-import AccountForm from "@/components/account/account-form";
+import {
+  BarChartIcon,
+  CardStackIcon,
+  GlobeIcon,
+  Link1Icon,
+  Link2Icon,
+  ListBulletIcon,
+  PlusIcon,
+} from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import AccountPage from "@/components/account/account-page";
+import { PersonIcon } from "@radix-ui/react-icons";
+import PagesModal from "@/components/pages/page-modal";
+import AllPages from "@/components/pages/all-pages";
 
 export default function appPage() {
   // const queryClient = useQueryClient();
@@ -26,9 +36,16 @@ export default function appPage() {
         defaultValue="Account"
         className="w-full flex justify-center items-center flex-col mt-10"
       >
-        <TabsList className=" w-full flex justify-evenly items-center border-b-2 border-slate-100 border-opacity-10">
-          <TabsTrigger value="Account">Account</TabsTrigger>
-          <TabsTrigger value="Links">Links</TabsTrigger>
+        <TabsList className=" w-full flex justify-evenly items-center border-b-2 border-slate-100 border-opacity-10 overflow-x-auto overflow-y-hidden py-3">
+          <TabsTrigger value="Account" className="flex">
+            Account <PersonIcon />{" "}
+          </TabsTrigger>
+          <TabsTrigger value="Links" className="flex">
+            Links <GlobeIcon />{" "}
+          </TabsTrigger>
+          <TabsTrigger value="Pages" className="flex">
+            Pages <CardStackIcon />{" "}
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="Account" className="w-full">
           <AccountPage />
@@ -58,6 +75,15 @@ export default function appPage() {
           </div>
           <div className="w-full flex justify-center items-center flex-col">
             <ListLinks />
+          </div>
+        </TabsContent>
+        <TabsContent value="Pages" className="w-full">
+          <div className="w-full flex justify-between items-center px-10 py-10 ">
+            <h3 className="flex items-center gap-2 justify-center">My Pages</h3>
+            <PagesModal />
+          </div>
+          <div className="w-full flex justify-center items-center flex-col">
+            <AllPages />
           </div>
         </TabsContent>
       </Tabs>

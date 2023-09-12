@@ -6,3 +6,4 @@ export { default as Facebook } from "./facebook";
 export { default as TwitterOrX } from "./twitter";
 export { default as Email } from "./email";
 export { default as Linkedin } from "./linkedin";
+export { default as Linkspot } from "./linkspot";

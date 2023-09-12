@@ -3,6 +3,7 @@ import React from "react";
 import { auth } from "@clerk/nextjs";
 import Link from "next/link";
 import { ModeToggle } from "./dark-mode";
+import { Linkspot } from "./icons";
 
 async function Nav() {
   const { userId } = await auth();

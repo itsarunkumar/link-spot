@@ -5,31 +5,27 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { page: string } }
 ) {
   try {
-    const userdetails = await prisma.user.findUnique({
+    const pagedetails = await prisma.page.findUnique({
       where: {
-        username: params.id as string,
+        title: params.page as string,
       },
       include: {
-        links: {
-          where: {
-            pageId: null,
-          },
+        link: {
           orderBy: {
             createdAt: "desc",
           },
         },
-        socialLinks: { orderBy: { createdAt: "desc" } },
       },
     });
 
     return NextResponse.json({
-      user: userdetails,
+      page: pagedetails,
     });
   } catch (error) {
-    console.log("params", params.id);
+    console.log("params", params.page);
 
     console.log(error);
   }

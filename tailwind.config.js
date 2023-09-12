@@ -8,7 +8,7 @@ module.exports = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@nextui-org/theme/dist/components/(button|snippet|code|input|modal|card|image|avatar).js",
+    "./node_modules/@nextui-org/theme/dist/components/(button|snippet|code|input|modal|card|image|avatar|snippet).js",
   ],
   theme: {
     container: {

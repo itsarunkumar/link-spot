@@ -8,7 +8,8 @@ export async function GET(request: NextRequest) {
   try {
     const links = await prisma.link.findMany({
       where: {
-        userId,
+        userId: userId,
+        OR: [{ pageId: null }, { pageId: "" }],
       },
       orderBy: {
         createdAt: "desc",
