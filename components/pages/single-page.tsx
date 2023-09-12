@@ -117,7 +117,10 @@ function PageLinks({ id }: { id: string }) {
   return (
     <ScrollArea className="w-full h-80 mt-5">
       {data?.data.map((link: any) => (
-        <div className="w-full px-3 py-2 border border-slate-400 border-opacity-20 shadow-md rounded-xl my-2 flex flex-col items-center">
+        <div
+          key={link.id}
+          className="w-full px-3 py-2 border border-slate-400 border-opacity-20 shadow-md rounded-xl my-2 flex flex-col items-center"
+        >
           <p className="font-bold">{link.title}</p>
           <p className="text-xs text-muted-foreground overflow-hidden text-ellipsis">
             {link.url}
