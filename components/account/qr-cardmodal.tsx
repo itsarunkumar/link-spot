@@ -14,6 +14,7 @@ import {
 import { Button } from "@nextui-org/button";
 import QRIcon from "../shared/icons/qr-icon";
 import { Avatar } from "@nextui-org/avatar";
+import { getUrl } from "@/lib/getUrl";
 
 type ModalProps = {
   username: string;
@@ -29,7 +30,7 @@ export default function QRmodal({ username, imageurl }: ModalProps) {
         <QRIcon className="w-4 h-4 text-white " />
         show QR
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="qrcode">
         <ModalContent>
           {(onClose) => (
             <>
@@ -43,9 +44,9 @@ export default function QRmodal({ username, imageurl }: ModalProps) {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                {/* <Button color="primary" onPress={onClose}>
                   Action
-                </Button>
+                </Button> */}
               </ModalFooter>
             </>
           )}
@@ -72,7 +73,8 @@ function QRCodeCard({ username, imageurl }: ModalProps) {
       </CardHeader>
       <CardBody className="overflow-visible py-2 w-full flex justify-center items-center">
         <QRCode
-          value={`${location.origin}/pv/${username}`}
+          // value={`${location.origin}/pv/${username}`}
+          value={getUrl(`/pv/${username}`)}
           className="object-center w-28 h-28"
         />
       </CardBody>

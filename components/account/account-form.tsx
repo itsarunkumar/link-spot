@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import React from "react";
 
 type Inputs = {
   title: string;
@@ -93,32 +94,31 @@ export function UpdateName() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex gap-2 items-center justify-center"
     >
-      <Input placeholder="Enter a Name" type="text" {...register("name")} />
+      <Input
+        placeholder="Enter a Name or edit"
+        type="text"
+        {...register("name")}
+      />
       <Button>save</Button>
     </form>
   );
 }
 
-import React from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Pencil2Icon, Share1Icon } from "@radix-ui/react-icons";
-
 export function CopyProfileUrl({ username }: { username: string }) {
   return (
-    <Popover>
-      <PopoverTrigger className="text-xs dark:text-slate-100 items-center flex gap-1 py-3">
-        <Share1Icon className="w-4 h-4" /> share link profile
-      </PopoverTrigger>
-      <PopoverContent className="flex items-center gap-2">
-        <Input value={`${location.origin}/pv/${username}`} readOnly />
-        <CopyButton url={`${location.origin}/pv/${username}`} />
-      </PopoverContent>
-    </Popover>
+    <>
+      <h1 className="text-sm flex self-start">copy profile url</h1>
+      <div className="flex items-center gap-2">
+        <Input className="py-2" value={getUrl(`/pv/${username}`)} readOnly />
+        <CopyButton url={getUrl(`/pv/${username}`)} />
+      </div>
+    </>
   );
 }
 
 import { Copy, Tick } from "@/components/shared/icons";
 import { toast } from "sonner";
+import { getUrl } from "@/lib/getUrl";
 
 function CopyButton({ url }: { url: string }) {
   const [copied, setCopied] = React.useState(false);
