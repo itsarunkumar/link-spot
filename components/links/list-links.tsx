@@ -35,18 +35,22 @@ function ListLinks() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["links"]);
-      toast({
-        title: "Link deleted successfully",
-        variant: "destructive",
-      });
     },
   });
 
-  console.log(data);
-
-  if (isLoading) {
-    return <div>Loading data....</div>;
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div id="load">
+  //       <div>G</div>
+  //       <div>N</div>
+  //       <div>I</div>
+  //       <div>D</div>
+  //       <div>A</div>
+  //       <div>O</div>
+  //       <div>L</div>
+  //     </div>
+  //   );
+  // }
 
   function deleteLink(linkid: string) {
     mutation.mutate(linkid as string);
@@ -54,6 +58,17 @@ function ListLinks() {
 
   return (
     <ScrollArea className="lg:w-2/3 w-full h-[500px]  py-4 lg:px-10 flex justify-center">
+      {isLoading && (
+        <div id="load">
+          <div>G</div>
+          <div>N</div>
+          <div>I</div>
+          <div>D</div>
+          <div>A</div>
+          <div>O</div>
+          <div>L</div>
+        </div>
+      )}
       {data?.map((link: Link) => {
         return (
           <Link
@@ -91,32 +106,3 @@ export function GlobeIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
-// <Card
-//             key={link.id}
-//             className=" lg:w-full sm:w-[250px] px-2 py-1 rounded-sm flex justify-center items-center  my-5 shadow-md border-opacity-20"
-//           >
-//             <CardHeader className="px-1 py-1 flex justify-center items-center ">
-//               <CardTitle className="w-full flex justify-center items-center">
-//                 <GlobeIcon className="w-9 h-9 flex justify-center items-center text-slate-50" />
-//               </CardTitle>
-//             </CardHeader>
-//             <CardContent className="px-1 py-1 flex justify-center items-center">
-//               <CardDescription className="truncate text-ellipsis overflow-hidden flex flex-col">
-//                 <h5 className="font-bold text-white">{link.title}</h5>
-//                 <span className="text-xs">{link.url}</span>
-//                 <span className="text-xs">
-//                   {formatDistance(new Date(link.createdAt), new Date(), {
-//                     addSuffix: true,
-//                   })}
-//                 </span>
-//               </CardDescription>
-//             </CardContent>
-//             <CardFooter className=" flex justify-center items-center">
-//               <TrashIcon
-//                 className="text-red-500 cursor-pointer w-6 h-6 flex self-center justify-center items-center "
-//                 //@ts-ignore
-//                 onClick={(e) => deleteLink(e, link.id)}
-//               />
-//             </CardFooter>
-//           </Card>

@@ -46,8 +46,14 @@ function Public({ params }: { params: { id: string } }) {
 
   if (isLoading) {
     return (
-      <div className="h-screen w-full flex justify-center items-center">
-        Getting User LInks....
+      <div id="load">
+        <div>G</div>
+        <div>N</div>
+        <div>I</div>
+        <div>D</div>
+        <div>A</div>
+        <div>O</div>
+        <div>L</div>
       </div>
     );
   }

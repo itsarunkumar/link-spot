@@ -56,12 +56,12 @@ function AccountSocialLink() {
     },
   });
 
-  if (isLoading) {
-    return <div>getting your social links...</div>;
-  }
-
   function deleteSocialLink(id: string) {
     mutation.mutate(id);
+  }
+
+  if (isLoading) {
+    return <div>getting your social links....</div>;
   }
 
   return (

@@ -25,18 +25,16 @@ function AllPages() {
     },
   });
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   if (isError) {
     return <div>Error</div>;
   }
 
-  console.log(data);
-
   function deletePage(pageid: string) {
     mutation.mutate(pageid as string);
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (

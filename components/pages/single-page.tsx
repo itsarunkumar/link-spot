@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FileTextIcon } from "@radix-ui/react-icons";
+import { FileTextIcon, TrashIcon } from "@radix-ui/react-icons";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -72,7 +72,6 @@ function Form({ pageid }: { pageid: string }) {
   });
 
   const onSubmit: SubmitHandler<Form> = (data) => {
-    console.log(data);
     mutation.mutate(data);
   };
 
@@ -98,7 +97,6 @@ function Form({ pageid }: { pageid: string }) {
 }
 
 function PageLinks({ id }: { id: string }) {
-  //TODO : fetch the links for respective page
   const { data, isError, isLoading } = useQuery({
     queryKey: ["page-links", "page"],
     queryFn: async () => {
@@ -106,25 +104,57 @@ function PageLinks({ id }: { id: string }) {
     },
   });
 
-  if (isLoading) {
-    <p>Loading page links...</p>;
-  }
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationKey: ["page-links", "page"],
+    mutationFn: async (id: string) => {
+      return axios.post("/api/delete-link", { id });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["page-links", "page"]);
+    },
+  });
 
   if (isError) {
     <p>unable to get links</p>;
   }
 
+  function deleteLink(linkid: string) {
+    mutation.mutate(linkid as string);
+  }
+
   return (
     <ScrollArea className="w-full h-80 mt-5">
+      {isLoading && (
+        <div id="load">
+          <div>G</div>
+          <div>N</div>
+          <div>I</div>
+          <div>D</div>
+          <div>A</div>
+          <div>O</div>
+          <div>L</div>
+        </div>
+      )}
       {data?.data.map((link: any) => (
         <div
           key={link.id}
-          className="w-full px-3 py-2 border border-slate-400 border-opacity-20 shadow-md rounded-xl my-2 flex flex-col items-center"
+          className="w-full px-3 py-2 border border-slate-400 border-opacity-20 shadow-md rounded-xl my-2 flex justify-around items-center"
         >
-          <p className="font-bold">{link.title}</p>
-          <p className="text-xs text-muted-foreground overflow-hidden text-ellipsis">
-            {link.url}
-          </p>
+          <div className="flex flex-col">
+            <p className="font-bold">{link.title}</p>
+            <p className="text-xs text-muted-foreground overflow-hidden text-ellipsis">
+              {link.url}
+            </p>
+          </div>
+          <TrashIcon
+            className=" text-red-500 w-6 h-6 cursor-pointer flex self-center align-middle rounded-md "
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteLink(link.id);
+            }}
+          />
         </div>
       ))}
     </ScrollArea>

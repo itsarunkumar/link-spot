@@ -39,7 +39,6 @@ export default function AccountForm() {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
     mutation.mutate(data);
     reset();
   };

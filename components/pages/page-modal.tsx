@@ -48,7 +48,6 @@ export default function PagesModal() {
   });
 
   const onSubmit: SubmitHandler<PageInput> = (data) => {
-    console.log(data);
     mutation.mutate(data);
   };
 

@@ -5,11 +5,11 @@ import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { Suspense } from "react";
 import SuspenseFallback from "@/components/shared/suspense-fallback";
+import { Linkspot } from "@/components/shared/icons";
 
 export default async function Home() {
   // const user: User | null = await currentUser();
   const { userId } = await auth();
-  console.log(userId);
 
   return (
     <>
