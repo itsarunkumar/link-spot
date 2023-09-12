@@ -7,7 +7,7 @@ import axios from "axios";
 import Link from "next/link";
 import React from "react";
 
-function page({ params }: { params: { pageid: string } }) {
+function Page({ params }: { params: { pageid: string } }) {
   const { data } = useQuery({
     queryKey: ["public", params.pageid],
     queryFn: async () => {
@@ -43,4 +43,4 @@ function page({ params }: { params: { pageid: string } }) {
   );
 }
 
-export default page;
+export default Page;
