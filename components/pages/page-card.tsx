@@ -34,9 +34,10 @@ type PageCard = {
   count: number;
   onDelete: (id: string) => void;
   id: string;
+  username: string;
 };
 
-function PageCard({ title, count, onDelete, id }: PageCard) {
+function PageCard({ title, count, onDelete, id, username }: PageCard) {
   return (
     <div className="w-full flex justify-between items-center px-5 py-4 border border-slate-700 border-opacity-10 rounded-lg dark:bg-slate-900 bg-slate-100  shadow-md ">
       <h1>{title}</h1>
@@ -53,10 +54,13 @@ function PageCard({ title, count, onDelete, id }: PageCard) {
             <SinglePage title={title} id={id} />
 
             <button className="mt-2 bg-transparent">
-              <CopyButton url={getUrl(`/pv/pg/${title}`)} />
+              <CopyButton url={getUrl(`/pv/pg/${username}/${title}`)} />
             </button>
 
-            <QRmodal title={title} url={getUrl(`/pv/pg/${title}`)} />
+            <QRmodal
+              title={title}
+              url={getUrl(`/pv/pg/${username}/${title}`)}
+            />
 
             <Separator className="mt-2" />
             <button
