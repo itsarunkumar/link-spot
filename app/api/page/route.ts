@@ -3,7 +3,7 @@ import { getAuth } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const { userId } = await getAuth(req);
+  const { userId, user } = await getAuth(req);
 
   if (!userId) {
     return new Response(null, {

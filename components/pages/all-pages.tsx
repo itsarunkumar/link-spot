@@ -4,8 +4,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import PageCard from "./page-card";
+import { useUser } from "@clerk/nextjs";
 
 function AllPages() {
+  const { user } = useUser();
+
   const { data, isError, isLoading } = useQuery({
     queryKey: ["page", "page-links"],
     queryFn: async () => {
@@ -29,6 +32,8 @@ function AllPages() {
     return <div>Error</div>;
   }
 
+  console.log(data);
+
   function deletePage(pageid: string) {
     mutation.mutate(pageid as string);
   }
@@ -46,6 +51,7 @@ function AllPages() {
           onDelete={deletePage}
           key={page.id}
           id={page.id}
+          username={user?.username as string}
         />
       ))}
     </div>
