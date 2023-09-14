@@ -12,6 +12,13 @@ function Page({ params }: { params: { pageid: string[] } }) {
 
   console.log(q);
 
+  const { data } = useQuery({
+    queryKey: ["public", params.pageid],
+    queryFn: async () => {
+      return await axios.get(`/api/public-view/page/${q}`);
+    },
+  });
+
   if (params.pageid.length > 2) {
     return (
       <div className="w-full h-screen flex justify-center items-center text-5xl text-slate-900 capitalize">
@@ -19,13 +26,6 @@ function Page({ params }: { params: { pageid: string[] } }) {
       </div>
     );
   }
-
-  const { data } = useQuery({
-    queryKey: ["public", params.pageid],
-    queryFn: async () => {
-      return await axios.get(`/api/public-view/page/${q}`);
-    },
-  });
 
   return (
     <div className="lg:w-1/2 md:w-2/3 w-full bg-neutral-200  flex justify-center items-center flex-col rounded-xl text-slate-900">
