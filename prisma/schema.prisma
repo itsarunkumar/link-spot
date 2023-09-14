@@ -62,11 +62,13 @@ model SocialLink {
 
 model Page {
   id    String @id @default(cuid())
-  title String @unique
+  title String
   link  Link[]
 
   User   User?   @relation(fields: [userId], references: [id])
   userId String?
 
   createdAt DateTime @default(now())
+
+  @@unique([title, userId])
 }
