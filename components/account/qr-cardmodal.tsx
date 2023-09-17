@@ -57,7 +57,7 @@ export default function QRmodal({ username, imageurl }: ModalProps) {
 
 function QRCodeCard({ username, imageurl }: ModalProps) {
   return (
-    <Card className="dark:bg-slate-50 text-slate-950 py-4 flex justify-center items-center">
+    <Card className="  py-4 flex justify-center items-center">
       <CardHeader className="flex justify-center items-center flex-col">
         <Avatar
           size="md"
@@ -74,7 +74,7 @@ function QRCodeCard({ username, imageurl }: ModalProps) {
         <QRCode
           // value={`${location.origin}/pv/${username}`}
           value={getUrl(`/pv/${username}`)}
-          className="object-center w-28 h-28"
+          className="object-center w-28 h-28 bg-slate-50 p-2 rounded-md"
         />
       </CardBody>
     </Card>
