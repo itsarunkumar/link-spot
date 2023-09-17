@@ -1,4 +1,4 @@
-export default function Github({ className }: { className: string }) {
+export default function Github({ className }: { className?: string }) {
   return (
     <svg
       width="1em"

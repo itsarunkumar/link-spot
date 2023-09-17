@@ -16,7 +16,7 @@ async function Nav() {
       <div className="w-full flex justify-end items-center gap-5 ">
         <ModeToggle />
 
-        <Link href={"/#"} className="">
+        <Link href={"/features"} className="">
           features
         </Link>
         <Link href={"/a"} className="">

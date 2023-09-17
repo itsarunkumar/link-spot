@@ -93,7 +93,8 @@
   -o-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
-  color: #35c4f0;
+  /* color: #35c4f0; */
+  @apply light:text-slate-900 dark:text-slate-50;
 }
 
 #load div:nth-child(2) {

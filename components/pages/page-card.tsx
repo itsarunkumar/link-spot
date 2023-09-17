@@ -118,7 +118,7 @@ function QRmodal({ title, url }: ModalProps) {
     <>
       <Button
         onPress={onOpen}
-        className=" p-0 m-0 bg-transparent text-foreground"
+        className=" p-0 m-0 bg-transparent text-foreground "
         color="primary"
       >
         show QR
@@ -152,7 +152,7 @@ function QRmodal({ title, url }: ModalProps) {
 
 function QRCodeCard({ title, url }: ModalProps) {
   return (
-    <Card className="dark:bg-slate-50 text-slate-950 py-4 flex justify-center items-center">
+    <Card className=" py-4 flex justify-center items-center">
       <CardHeader className="flex justify-center items-center flex-col">
         <span className="py-2 w-2/3 text-center font-semibold">
           scan the QR code to see links {title} page
@@ -161,8 +161,8 @@ function QRCodeCard({ title, url }: ModalProps) {
       <CardBody className="overflow-visible py-2 w-full flex justify-center items-center">
         <QRCode
           // value={`${location.origin}/pv/${username}`}
-          value={getUrl(`/pv/pg/${title}`)}
-          className="object-center w-28 h-28"
+          value={getUrl(`/pv/pg/${title.toLocaleUpperCase()}`)}
+          className="object-center w-28 h-28 bg-slate-50 p-2 rounded-md"
         />
       </CardBody>
     </Card>
