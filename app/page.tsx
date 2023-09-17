@@ -40,20 +40,15 @@ export default async function Home() {
           </div>
           <div className="lg:w-1/2 w-full flex justify-center items-center  lg:text-5xl text-3xl  text-center ">
             <p>
-              "Welcome to <span className="text-primary">LinkSpot</span> : The
-              Open Source Oasis for Sharing Reliable and Community-Driven
-              Links!"
+              Welcome to <span className="text-primary">LinkSpot</span> : The
+              Open Source Oasis for Sharing Reliable and Community-Driven Links!
             </p>
           </div>
-          <div
-            className="w-full flex justify-center items-center h-80 my-5
-            overflow-hidden
-          "
-          >
+          <div className="w-full flex justify-center items-center h-80 my-5 overflow-hidden ">
             <AnimationCard />
           </div>
           <footer className="py-4 text-sm font-bold bottom-0 w-full flex justify-center">
-            open source :{" "}
+            open source :
             <Link
               href="https://github.com/itsarunkumar/link-spot"
               target="_blank"
