@@ -108,8 +108,8 @@ export function CopyProfileUrl({ username }: { username: string }) {
     <>
       <h1 className="text-sm flex self-start">copy profile url</h1>
       <div className="flex items-center gap-2">
-        <Input className="py-2" value={getUrl(`/pv/${username}`)} readOnly />
-        <CopyButton url={getUrl(`/pv/${username}`)} />
+        <Input className="py-2" value={getUrl(`/${username}`)} readOnly />
+        <CopyButton url={getUrl(`/${username}`)} />
       </div>
     </>
   );

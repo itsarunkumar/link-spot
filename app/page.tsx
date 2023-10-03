@@ -44,19 +44,6 @@ export default async function Home() {
               Open Source Oasis for Sharing Reliable and Community-Driven Links!
             </p>
           </div>
-          <div className="w-full flex justify-center items-center h-80 my-5 overflow-hidden ">
-            <AnimationCard />
-          </div>
-          <footer className="py-4 text-sm font-bold bottom-0 w-full flex justify-center">
-            open source :
-            <Link
-              href="https://github.com/itsarunkumar/link-spot"
-              target="_blank"
-              className="flex gap-2 items-center px-1"
-            >
-              Github <Github />
-            </Link>
-          </footer>
         </div>
       </Suspense>
     </>

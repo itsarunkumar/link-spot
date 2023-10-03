@@ -1,7 +1,5 @@
 "use client";
 
-import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
-import QRCode from "react-qr-code";
 import {
   Modal,
   ModalContent,
@@ -12,8 +10,7 @@ import {
 } from "@nextui-org/modal";
 import { Button } from "@nextui-org/button";
 import QRIcon from "../shared/icons/qr-icon";
-import { Avatar } from "@nextui-org/avatar";
-import { getUrl } from "@/lib/getUrl";
+import QRCodeCard from "../shared/qr-card";
 
 type ModalProps = {
   username: string;
@@ -37,7 +34,7 @@ export default function QRmodal({ username, imageurl }: ModalProps) {
                 {username.toLocaleUpperCase()} QR Code
               </ModalHeader>
               <ModalBody>
-                <QRCodeCard username={username} imageurl={imageurl} />
+                <QRCodeCard title={username} url={username} />
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
@@ -52,31 +49,5 @@ export default function QRmodal({ username, imageurl }: ModalProps) {
         </ModalContent>
       </Modal>
     </>
-  );
-}
-
-function QRCodeCard({ username, imageurl }: ModalProps) {
-  return (
-    <Card className="  py-4 flex justify-center items-center">
-      <CardHeader className="flex justify-center items-center flex-col">
-        <Avatar
-          size="md"
-          radius="md"
-          color="warning"
-          isBordered
-          src={imageurl}
-        />
-        <span className="py-2 w-2/3 text-center font-semibold">
-          scan the QR code to see {username} profile
-        </span>
-      </CardHeader>
-      <CardBody className="overflow-visible py-2 w-full flex justify-center items-center">
-        <QRCode
-          // value={`${location.origin}/pv/${username}`}
-          value={getUrl(`/pv/${username}`)}
-          className="object-center w-28 h-28 bg-slate-50 p-2 rounded-md"
-        />
-      </CardBody>
-    </Card>
   );
 }
