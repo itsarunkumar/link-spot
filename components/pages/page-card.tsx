@@ -10,6 +10,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "../ui/separator";
+3501;
 import SinglePage from "./single-page";
 import { getUrl } from "@/lib/getUrl";
 import { useState } from "react";
@@ -28,6 +29,7 @@ import {
 import { Button } from "@nextui-org/button";
 import QRIcon from "../shared/icons/qr-icon";
 import { Avatar } from "@nextui-org/avatar";
+import QRCodeCard from "../shared/qr-card";
 
 type PageCard = {
   title: string;
@@ -50,7 +52,7 @@ function PageCard({ title, count, onDelete, id, username }: PageCard) {
           <PopoverTrigger>
             <DotsVerticalIcon className="w-6 h-6" />
           </PopoverTrigger>
-          <PopoverContent className="w-36 text-center">
+          <PopoverContent className="w-36 text-start">
             <SinglePage title={title} id={id} />
 
             <button className="mt-2 bg-transparent">
@@ -132,7 +134,7 @@ function QRmodal({ title, url }: ModalProps) {
                 {title.toLocaleUpperCase()} QR Code
               </ModalHeader>
               <ModalBody>
-                <QRCodeCard title={title} url={url} />
+                <QRCodeCard title={title} url={`/page/${title}`} />
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
@@ -147,24 +149,5 @@ function QRmodal({ title, url }: ModalProps) {
         </ModalContent>
       </Modal>
     </>
-  );
-}
-
-function QRCodeCard({ title, url }: ModalProps) {
-  return (
-    <Card className=" py-4 flex justify-center items-center">
-      <CardHeader className="flex justify-center items-center flex-col">
-        <span className="py-2 w-2/3 text-center font-semibold">
-          scan the QR code to see links {title} page
-        </span>
-      </CardHeader>
-      <CardBody className="overflow-visible py-2 w-full flex justify-center items-center">
-        <QRCode
-          // value={`${location.origin}/pv/${username}`}
-          value={getUrl(`/pv/pg/${title.toLocaleUpperCase()}`)}
-          className="object-center w-28 h-28 bg-slate-50 p-2 rounded-md"
-        />
-      </CardBody>
-    </Card>
   );
 }

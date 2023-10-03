@@ -5,6 +5,7 @@ import axios from "axios";
 import React from "react";
 import PageCard from "./page-card";
 import { useUser } from "@clerk/nextjs";
+import QRCodeCard from "../shared/qr-card";
 
 function AllPages() {
   const { user } = useUser();

@@ -31,26 +31,30 @@ export default function appPage() {
   // const queryClient = useQueryClient();
 
   return (
-    <div className=" min-h-max w-full flex justify-center items-center flex-col">
+    <div className=" w-full flex justify-center items-center flex-col">
       <Tabs
         defaultValue="Account"
-        className="w-full flex justify-center items-center flex-col mt-10"
+        className="w-full  min-h-screen flex justify-start items-center flex-col mt-10"
       >
-        <TabsList className=" w-full flex justify-evenly items-center border-b-2 border-slate-100 border-opacity-10 overflow-x-auto overflow-y-hidden py-3">
+        <TabsList className=" w-full flex justify-start items-center  gap-10 border-b-2 border-slate-100 border-opacity-10 overflow-x-auto overflow-y-hidden py-8">
           <TabsTrigger value="Account" className="flex">
-            Account <PersonIcon />{" "}
+            Account <PersonIcon />
           </TabsTrigger>
           <TabsTrigger value="Links" className="flex">
-            Links <GlobeIcon />{" "}
+            Links <GlobeIcon />
           </TabsTrigger>
           <TabsTrigger value="Pages" className="flex">
-            Pages <CardStackIcon />{" "}
+            Pages <CardStackIcon />
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="Account" className="w-full">
+
+        {/* Account */}
+        <TabsContent value="Account" className="w-full ">
           <AccountPage />
         </TabsContent>
-        <TabsContent value="Links" className="w-full relative">
+
+        {/* Links */}
+        <TabsContent value="Links" className="w-full relative ">
           <div className="w-full flex justify-between items-center px-10 py-10 ">
             <h3 className="flex items-center gap-2 justify-center">
               My Links <Link1Icon />
@@ -77,7 +81,9 @@ export default function appPage() {
             <ListLinks />
           </div>
         </TabsContent>
-        <TabsContent value="Pages" className="w-full">
+
+        {/* Pages */}
+        <TabsContent value="Pages" className="w-full ">
           <div className="w-full flex justify-between items-center px-10 py-10 ">
             <h3 className="flex items-center gap-2 justify-center">My Pages</h3>
             <PagesModal />

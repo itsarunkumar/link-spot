@@ -38,7 +38,7 @@ model Link {
   User      User?    @relation(fields: [userId], references: [id])
   userId    String?
   createdAt DateTime @default(now())
-  Page      Page?    @relation(fields: [pageId], references: [id])
+  Page      Page?    @relation(fields: [pageId], references: [id], onDelete: Cascade)
   pageId    String?
 }
 
