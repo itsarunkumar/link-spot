@@ -68,6 +68,7 @@ function Public({ params }: { params: { id: string } }) {
                   }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ delay: 0.1 }}
+                  key={link.id}
                 >
                   <Link
                     key={link.id}
@@ -103,6 +104,7 @@ function Public({ params }: { params: { id: string } }) {
                   <motion.div
                     whileFocus={{ scaleY: 1.1 }}
                     whileTap={{ y: [0, -10, 0] }}
+                    key={link.id}
                   >
                     <Link
                       key={link.id}
